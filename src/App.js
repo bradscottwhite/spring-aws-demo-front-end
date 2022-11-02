@@ -1,38 +1,38 @@
 import { useState, useEffect } from 'react'
 
-import { getEmployee } from './api/employeeFns'
+import { Employee } from './Employee'
+import { AddEmployee } from './AddEmployee'
+
+import {
+	getEmployees
+} from './api/employeeFns'
 
 export const App = () => {
-	const [
-		{
-			firstName, lastName,
-			email,
-		},
-		setEmployee
-	] = useState({})
-	const [
-		{
-			departmentName,
-			departmentCode
-		},
-		setDepartment
-	] = useState({})
+	const [ employees, setEmployees ] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const id = '39f6ad24-8e09-4bc9-ba80-7d9c8e043db8'
-			const data = await getEmployee(id)
-			setEmployee(data)
-			setDepartment(data.department)
+			setEmployees(
+				await getEmployees()
+			)
 		}
 		fetchData()
 	}, [])
 
+	const removeEmployee = id => {
+		setEmployees(employees.filter(i => i.employeeId !== id))
+	}
+
 	return (
-		<>
-			<h1>Howdy {firstName} {lastName}!</h1>
-			<h2>Your email: {email}</h2>
-			<p>Department name/code: {departmentName} / {departmentCode}</p>
-		</>
+		<div className='bg-red-600 rounded p-10 m-10 drop-shadow-lg'>
+			<AddEmployee employees={employees} setEmployees={setEmployees} />
+
+			{employees.map(employee => (
+				<Employee
+					removeEmployee={removeEmployee}
+					employee={employee}
+				/>
+			))}
+		</div>
 	)
 };

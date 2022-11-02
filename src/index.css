@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-red-800 overflow-x-hidden;
+}
+
+input {
+	@apply rounded-md px-4 py-1 mx-4 my-2;
+}
+
+button {
+	@apply bg-red-800 text-white rounded-lg hover:bg-red-900 hover:scale-110 px-4 py-2 mx-4 my-2 transition ease-in-out delay-150 duration-300 drop-shadow-xl;
+}
