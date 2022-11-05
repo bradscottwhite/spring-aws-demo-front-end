@@ -2,7 +2,7 @@
  * Employee REST api functions
  */
 
-const url = 'http://springawsdemo2-env.eba-gpepswai.us-east-1.elasticbeanstalk.com/employee/'
+const url = 'https://d1zh8klo8m4c8i.cloudfront.net/employee/'
 
 // Add try/catch!!!
 
